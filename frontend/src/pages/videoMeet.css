@@ -10,12 +10,33 @@
 
 /* Remote Video (Full Screen) */
 
-.conferenceView{
+/* .conferenceView{
   position: absolute;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+} */
+.conferenceView{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  padding: 10px;
+}
+.videoBox{
+  width: 100%;
+  height: 100%;
+  background: black;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.videoBox video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .conferenceView video{
@@ -73,21 +94,39 @@
   flex-direction: column;
 }
 
+/* .chatContainer{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+} */
 .chatContainer{
   flex: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
+/* .chattingDisplay{
+  flex: 1;
+  overflow-y: auto;
+} */
 .chattingDisplay{
   flex: 1;
   overflow-y: auto;
+  padding: 10px;
+  height: 0;
 }
 
+/* .chattingArea{
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+} */
 .chattingArea{
   display: flex;
   gap: 10px;
   padding: 10px;
+  border-top: 1px solid #ddd;
 }
 
 /* ---------- Mobile View ---------- */
@@ -122,6 +161,9 @@
     bottom: 70px;
     top: auto;
     border-radius: 15px 15px 0 0;
+  }
+  .videoBox{
+    min-height: 150px;
   }
 
 }
