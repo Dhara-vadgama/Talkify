@@ -16,8 +16,8 @@ import MessageIcon from "@mui/icons-material/Message";
 import Badge from "@mui/material/Badge";
 import { useNavigate } from "react-router-dom";
 // const server_url = "http://localhost:3002";
-
-const server_url = window.location.origin;
+import server from "../../environment";
+const server_url = server;
 var connections = {};
 const peerConfigConnection = {
   iceServers: [
