@@ -1,0 +1,64 @@
+/* Navbar */
+
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+/* Main Container */
+
+.meetContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  padding: 20px;
+  min-height: 80vh;
+}
+
+/* Left Side */
+
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.leftPanel h2 {
+  font-size: 28px;
+}
+
+/* Right Side Image */
+
+.rightPanel img {
+  width: 420px;
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+/* ----------- Mobile Fix ----------- */
+
+@media (max-width: 768px) {
+
+  .meetContainer {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .leftPanel {
+    width: 100%;
+    align-items: center;
+  }
+
+  .leftPanel h2 {
+    font-size: 22px;
+  }
+
+  .rightPanel img {
+    width: 70%;
+  }
+
+}

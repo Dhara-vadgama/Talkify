@@ -1,0 +1,127 @@
+/* Main Container */
+
+.meetVideoConatiner{
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: #203360;
+  overflow: hidden;
+}
+
+/* Remote Video (Full Screen) */
+
+.conferenceView{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.conferenceView video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Small Self Video */
+
+.meetUserVideo{
+  position: absolute;
+  bottom: 90px;
+  left: 20px;
+  width: 150px;
+  height: 110px;
+  border-radius: 10px;
+  border: 2px solid white;
+  object-fit: cover;
+  z-index: 5;
+}
+
+/* Bottom Control Bar */
+
+.buttonContainer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+  z-index: 20;
+}
+
+.buttonContainer svg{
+  font-size: 2rem;
+  color: white;
+}
+
+/* Chat Panel */
+
+.chatRoom{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 320px;
+  height: 100%;
+  background: white;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatContainer{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chattingDisplay{
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chattingArea{
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* ---------- Mobile View ---------- */
+
+@media (max-width: 768px){
+
+  /* self video */
+
+  .meetUserVideo{
+    width: 110px;
+    height: 80px;
+    bottom: 85px;
+    right: 10px;
+  }
+
+  /* control buttons */
+
+  .buttonContainer{
+    height: 65px;
+    gap: 18px;
+  }
+
+  .buttonContainer svg{
+    font-size: 1.8rem;
+  }
+
+  /* chat becomes bottom drawer */
+
+  .chatRoom{
+    width: 100%;
+    height: 55%;
+    bottom: 70px;
+    top: auto;
+    border-radius: 15px 15px 0 0;
+  }
+
+}

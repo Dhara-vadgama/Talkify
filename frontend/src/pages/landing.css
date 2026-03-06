@@ -1,0 +1,125 @@
+.landingPageContainer{
+    width:100%;
+    min-height:100vh;
+    background-image: url("/background.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:center;
+    color:white;
+}
+
+/* Navbar */
+
+.navHeader{
+    padding:1.2rem 1.5rem;
+}
+
+.landingPageContainer nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.landingPageContainer nav h2{
+    font-size:2rem;
+}
+
+.navlist{
+    display:flex;
+    align-items:center;
+    gap:1.5rem;
+    cursor:pointer;
+}
+
+.navlist p{
+    color:white;
+}
+
+/* Main Section */
+
+.landingMainContainer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:calc(100vh - 80px);
+    padding:0 4rem;
+}
+
+/* Image */
+
+.landingMainContainer img{
+    height:80vh;
+    width:auto;
+}
+
+/* Text */
+
+.landingMainContainer h1{
+    font-size:2.5rem;
+}
+
+.landingMainContainer p{
+    font-size:1.2rem;
+    line-height:1.8rem;
+    margin-bottom:1.2rem;
+}
+
+/* Buttons */
+
+.startButton,
+.loginButton{
+    display:inline-block;
+    background:#ff9839;
+    padding:0.8rem 1.8rem;
+    border-radius:8px;
+    color:white;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.startButton:hover,
+.loginButton:hover{
+    background:#ff8800;
+}
+
+/* ---------------- MOBILE FIX ---------------- */
+
+@media (max-width: 768px){
+
+    .landingMainContainer{
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+        height:auto;
+        padding:2rem;
+        gap:2rem;
+    }
+
+    .landingMainContainer img{
+        width:80%;
+        height:auto;
+    }
+
+    .landingMainContainer h1{
+        font-size:2rem;
+    }
+
+    .landingMainContainer p{
+        font-size:1rem;
+    }
+
+    .navlist{
+        gap:1rem;
+        font-size:0.9rem;
+    }
+
+}
+
+.startButton{
+    margin-top:10px;
+    transition:0.2s;
+}
+
+.startButton:hover{
+    transform:scale(1.05);
+}
