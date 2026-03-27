@@ -1,51 +1,104 @@
-/* Navbar */
+/* ========== HOME PAGE - Google Meet Dark Theme ========== */
 
+.homePageContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1c22 0%, #1e2530 50%, #181c26 100%);
+  color: #e8eaed;
+}
+
+/* Navbar */
 .navBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
+  padding: 12px 24px;
+  background: rgba(26, 28, 34, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navBarBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navBarBrand h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.navBarActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Main Container */
-
 .meetContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 60px;
-  padding: 20px;
-  min-height: 80vh;
+  padding: 40px 24px;
+  min-height: calc(100vh - 60px);
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-/* Left Side */
-
+/* Left Panel */
 .leftPanel {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+  flex: 1;
 }
 
 .leftPanel h2 {
-  font-size: 28px;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-/* Right Side Image */
+.leftPanel h2 span {
+  background: linear-gradient(135deg, #4285f4, #5eb3f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.joinGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Right Panel */
+.rightPanel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
 
 .rightPanel img {
-  width: 420px;
-  max-width: 100%;
-  border-radius: 15px;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  animation: float 6s ease-in-out infinite;
 }
 
-/* ----------- Mobile Fix ----------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
 
+/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
-
   .meetContainer {
     flex-direction: column;
     text-align: center;
     gap: 30px;
+    padding: 24px 16px;
   }
 
   .leftPanel {
@@ -54,11 +107,15 @@
   }
 
   .leftPanel h2 {
-    font-size: 22px;
+    font-size: 1.5rem;
+  }
+
+  .joinGroup {
+    flex-direction: column;
+    width: 100%;
   }
 
   .rightPanel img {
     width: 70%;
   }
-
 }

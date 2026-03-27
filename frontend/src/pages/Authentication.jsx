@@ -1,19 +1,47 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AuthContext } from "../context/authContext";
 import Snackbar from "@mui/material/Snackbar";
+import { Link } from "react-router-dom";
 
-const defaultTheme = createTheme();
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: { main: "#4285f4" },
+    background: { default: "#1a1c22", paper: "#23262f" },
+  },
+  typography: { fontFamily: "'Inter', 'Google Sans', system-ui, sans-serif" },
+  shape: { borderRadius: 12 },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            borderRadius: 12,
+            background: "rgba(255,255,255,0.04)",
+            "& fieldset": { borderColor: "rgba(255,255,255,0.1)" },
+            "&:hover fieldset": { borderColor: "rgba(66,133,244,0.5)" },
+            "&.Mui-focused fieldset": { borderColor: "#4285f4" },
+          },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+          textTransform: "none",
+          fontWeight: 600,
+          fontSize: "0.95rem",
+          padding: "12px 0",
+        },
+      },
+    },
+  },
+});
 
 export default function Authentication() {
   const [username, setUserName] = React.useState("");
@@ -29,147 +57,159 @@ export default function Authentication() {
     try {
       if (formState == 0) {
         let result = await handleLogin(username, password);
-        console.log(result);
         setMessage(result);
         setOpen(true);
       }
       if (formState == 1) {
         let result = await handleRegister(name, username, password);
-        console.log(result);
         setMessage(result);
         setOpen(true);
       }
     } catch (e) {
-      console.log("FULL ERROR 👉", e);
-      // console.log("RESPONSE 👉", e?.response);
-      // console.log("DATA 👉", e?.response?.data);
-
-      let message = e?.response?.data?.message || e.message || "Server error";
-
-      setError(message);
+      let msg = e?.response?.data?.message || e.message || "Server error";
+      setError(msg);
     }
   };
+
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Grid
-        container
-        component="main"
+    <ThemeProvider theme={darkTheme}>
+      <Box
         sx={{
-          height: "100vh",
-          background: "linear-gradient(135deg,#203360,#3f51b5)",
+          minHeight: "100vh",
+          background: "linear-gradient(135deg, #1a1c22 0%, #1e2530 50%, #181c26 100%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          px: 2,
+          py: 4,
         }}
-        alignItems="center"
-        justifyContent="center"
       >
-        <CssBaseline />
-        <Grid
-          item
-          xs={11}
-          sm={8}
-          md={5}
-          component={Paper}
-          elevation={10}
-          sx={{
-            borderRadius: 3,
-            backdropFilter: "blur(10px)",
-          }}
-        >
-          <Box
-            sx={{
-              width: "100%",
-              maxWidth: 400,
-              p: 3,
+        <Box sx={{ width: "100%", maxWidth: 380 }}>
+          {/* Logo */}
+          <Link
+            to="/"
+            style={{
               display: "flex",
-              flexDirection: "column",
               alignItems: "center",
+              justifyContent: "center",
+              gap: 10,
+              textDecoration: "none",
+              marginBottom: 24,
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            <Box
+              sx={{
+                width: 40,
+                height: 40,
+                borderRadius: 2,
+                bgcolor: "#4285f4",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "1.2rem",
+              }}
+            >
+              📹
+            </Box>
+            <Box
+              component="span"
+              sx={{ fontSize: "1.6rem", fontWeight: 700, color: "#e8eaed" }}
+            >
+              Talkify
+            </Box>
+          </Link>
 
-            {/* Toggle Buttons */}
+          {/* Card */}
+          <Box
+            sx={{
+              background: "rgba(255,255,255,0.04)",
+              backdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderRadius: 4,
+              p: { xs: 3, sm: 4 },
+              boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+            }}
+          >
+            <Box sx={{ textAlign: "center", mb: 3 }}>
+              <Box
+                component="h2"
+                sx={{ fontSize: "1.3rem", fontWeight: 600, color: "#e8eaed", mb: 0.5 }}
+              >
+                {formState === 0 ? "Welcome Back" : "Create Account"}
+              </Box>
+              <Box
+                component="p"
+                sx={{ fontSize: "0.85rem", color: "rgba(232,234,237,0.5)" }}
+              >
+                {formState === 0 ? "Sign in to continue" : "Join Talkify today"}
+              </Box>
+            </Box>
+
+            {/* Toggle */}
             <Box
               sx={{
                 display: "flex",
-                gap: 2,
-                mb: 2,
+                borderRadius: 3,
+                overflow: "hidden",
+                border: "1px solid rgba(255,255,255,0.08)",
+                mb: 3,
               }}
             >
-              <Button
-                fullWidth
-                sx={{
-                  mt: 2,
-                  borderRadius: 3,
-                  height: 45,
-                }}
-                variant={formState === 0 ? "contained" : "outlined"}
-                onClick={() => setFormState(0)}
-              >
-                Sign In
-              </Button>
-
-              <Button
-                sx={{ width: 120 }}
-                variant={formState === 1 ? "contained" : "outlined"}
-                onClick={() => setFormState(1)}
-              >
-                Sign Up
-              </Button>
+              {["Sign In", "Sign Up"].map((label, idx) => (
+                <Box
+                  key={label}
+                  onClick={() => {
+                    setFormState(idx);
+                    setError("");
+                  }}
+                  sx={{
+                    flex: 1,
+                    py: 1.2,
+                    textAlign: "center",
+                    cursor: "pointer",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                    transition: "all 0.2s",
+                    color: formState === idx ? "#fff" : "rgba(232,234,237,0.5)",
+                    background:
+                      formState === idx
+                        ? "#4285f4"
+                        : "transparent",
+                  }}
+                >
+                  {label}
+                </Box>
+              ))}
             </Box>
 
             {/* Form */}
-            <Box
-              component="form"
-              noValidate
-              sx={{
-                width: "100%",
-                maxWidth: 400,
-                p: { xs: 2, sm: 3 },
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              {/* Reserved space to avoid layout jump */}
-              <Box sx={{ minHeight: 80 }}>
-                {formState === 1 ? (
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Full Name"
-                    id="fullName"
-                    name="name"
-                    autoFocus
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                ) : (
-                  " "
-                )}
-              </Box>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {formState === 1 && (
+                <TextField
+                  fullWidth
+                  label="Full Name"
+                  variant="outlined"
+                  size="small"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              )}
 
               <TextField
-                margin="normal"
-                required
                 fullWidth
                 label="Username"
-                id="username"
-                name="username"
-                autoFocus
+                variant="outlined"
+                size="small"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
               />
 
               <TextField
-                margin="normal"
-                required
                 fullWidth
                 label="Password"
                 type="password"
-                name="password"
-                id="password"
+                variant="outlined"
+                size="small"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -177,41 +217,40 @@ export default function Authentication() {
               {error && (
                 <Box
                   sx={{
-                    color: "error.main",
-                    fontSize: "0.9rem",
-                    mt: 1,
+                    fontSize: "0.8rem",
+                    color: "#ea4335",
+                    textAlign: "center",
+                    py: 0.5,
                   }}
                 >
                   {error}
                 </Box>
               )}
+
               <Button
-                fullWidth
                 variant="contained"
-                sx={{
-                  mt: 2,
-                  borderRadius: 3,
-                  height: 45,
-                  transition: "0.2s",
-                  "&:hover": {
-                    transform: "scale(1.03)",
-                  },
-                }}
+                fullWidth
                 onClick={handleAuth}
+                sx={{
+                  mt: 1,
+                  background: "#4285f4",
+                  "&:hover": { background: "#3b78e7" },
+                  boxShadow: "0 4px 16px rgba(66,133,244,0.3)",
+                }}
               >
                 {formState === 0 ? "Sign In" : "Sign Up"}
               </Button>
             </Box>
           </Box>
-        </Grid>
-      </Grid>
 
-      <Snackbar
-        open={open}
-        autoHideDuration={4000}
-        onClose={() => setOpen(false)}
-        message={message}
-      />
+          <Snackbar
+            open={open}
+            autoHideDuration={4000}
+            onClose={() => setOpen(false)}
+            message={message}
+          />
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 }

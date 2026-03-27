@@ -1,125 +1,328 @@
-.landingPageContainer{
-    width:100%;
-    min-height:100vh;
-    background-image: url("/background.jpg");
-    background-repeat:no-repeat;
-    background-size: cover;
-    background-position:center;
-    color:white;
-}
+/* ========== LANDING PAGE - Google Meet Inspired Dark Theme ========== */
 
-/* Navbar */
-
-.navHeader{
-    padding:1.2rem 1.5rem;
-}
-
-.landingPageContainer nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.landingPageContainer nav h2{
-    font-size:2rem;
-}
-
-.navlist{
-    display:flex;
-    align-items:center;
-    gap:1.5rem;
-    cursor:pointer;
-}
-
-.navlist p{
-    color:white;
-}
-
-/* Main Section */
-
-.landingMainContainer{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    height:calc(100vh - 80px);
-    padding:0 4rem;
-}
-
-/* Image */
-
-.landingMainContainer img{
-    height:80vh;
-    width:auto;
-}
-
-/* Text */
-
-.landingMainContainer h1{
-    font-size:2.5rem;
-}
-
-.landingMainContainer p{
-    font-size:1.2rem;
-    line-height:1.8rem;
-    margin-bottom:1.2rem;
-}
-
-/* Buttons */
-
-.startButton,
-.loginButton{
-    display:inline-block;
-    background:#ff9839;
-    padding:0.8rem 1.8rem;
-    border-radius:8px;
-    color:white;
-    font-weight:600;
-    text-decoration:none;
-}
-
-.startButton:hover,
-.loginButton:hover{
-    background:#ff8800;
-}
-
-/* ---------------- MOBILE FIX ---------------- */
-
-@media (max-width: 768px){
-
-    .landingMainContainer{
-        flex-direction:column;
-        justify-content:center;
-        text-align:center;
-        height:auto;
-        padding:2rem;
-        gap:2rem;
+.landingPageContainer {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1c22 0%, #1e2530 50%, #181c26 100%);
+    color: #e8eaed;
+    overflow-x: hidden;
+  }
+  
+  /* Navbar */
+  .navHeader {
+    padding: 0.8rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(26, 28, 34, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  .landingPageContainer nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  
+  .navBrand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #e8eaed;
+  }
+  
+  .navBrandIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #4285f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+  }
+  
+  .navBrand:hover .navBrandIcon {
+    transform: scale(1.1);
+  }
+  
+  .navBrand h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  
+  .navlist {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .navlist p,
+  .navlist a {
+    color: rgba(232, 234, 237, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border-radius: 24px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .navlist p:hover,
+  .navlist a:hover {
+    color: #e8eaed;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  
+  .navGetStarted {
+    background: #4285f4 !important;
+    color: #fff !important;
+    font-weight: 500;
+    padding: 8px 20px !important;
+  }
+  
+  .navGetStarted:hover {
+    background: #3b78e7 !important;
+  }
+  
+  /* Hero Section */
+  .landingMainContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 100px 4rem 60px;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 4rem;
+  }
+  
+  .heroTextSection {
+    flex: 1;
+  }
+  
+  .heroTextSection h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+  
+  .heroTextSection h1 span {
+    background: linear-gradient(135deg, #4285f4, #5eb3f5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .heroTextSection p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(232, 234, 237, 0.6);
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+  
+  .heroBtnGroup {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .startButton {
+    display: inline-block;
+    background: #4285f4;
+    padding: 14px 32px;
+    border-radius: 28px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(66, 133, 244, 0.3);
+    border: none;
+    cursor: pointer;
+  }
+  
+  .startButton:hover {
+    background: #3b78e7;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(66, 133, 244, 0.4);
+  }
+  
+  .loginButton {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 14px 32px;
+    border-radius: 28px;
+    color: #e8eaed;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  
+  .loginButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .heroImageSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .heroImageSection img {
+    width: 100%;
+    max-width: 480px;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Features */
+  .featuresSection {
+    padding: 80px 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  
+  .featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .featureCard {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+  }
+  
+  .featureCard:hover {
+    border-color: rgba(66, 133, 244, 0.4);
+    background: rgba(255, 255, 255, 0.06);
+  }
+  
+  .featureIconWrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(66, 133, 244, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    transition: background 0.3s;
+  }
+  
+  .featureCard:hover .featureIconWrap {
+    background: rgba(66, 133, 244, 0.2);
+  }
+  
+  .featureCard h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .featureCard p {
+    font-size: 0.9rem;
+    color: rgba(232, 234, 237, 0.5);
+    line-height: 1.5;
+  }
+  
+  /* Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .heroTextSection,
+  .heroImageSection {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+  
+  .heroImageSection {
+    animation-delay: 0.2s;
+  }
+  
+  /* -------- RESPONSIVE -------- */
+  @media (max-width: 1024px) {
+    .featuresGrid {
+      grid-template-columns: repeat(2, 1fr);
     }
-
-    .landingMainContainer img{
-        width:80%;
-        height:auto;
+  }
+  
+  @media (max-width: 768px) {
+    .landingMainContainer {
+      flex-direction: column;
+      text-align: center;
+      padding: 100px 1.5rem 40px;
+      gap: 2.5rem;
     }
-
-    .landingMainContainer h1{
-        font-size:2rem;
+  
+    .heroTextSection h1 {
+      font-size: 2.2rem;
     }
-
-    .landingMainContainer p{
-        font-size:1rem;
+  
+    .heroTextSection p {
+      margin-left: auto;
+      margin-right: auto;
     }
-
-    .navlist{
-        gap:1rem;
-        font-size:0.9rem;
+  
+    .heroBtnGroup {
+      flex-direction: column;
+      width: 100%;
     }
-
-}
-
-.startButton{
-    margin-top:10px;
-    transition:0.2s;
-}
-
-.startButton:hover{
-    transform:scale(1.05);
-}
+  
+    .startButton,
+    .loginButton {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .heroImageSection img {
+      width: 70%;
+    }
+  
+    .navHeader {
+      padding: 0.6rem 1rem;
+    }
+  
+    .navBrand h2 {
+      font-size: 1.2rem;
+    }
+  
+    .navlist {
+      gap: 0.4rem;
+    }
+  
+    .navlist p,
+    .navlist a {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+  
+    .featuresGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
