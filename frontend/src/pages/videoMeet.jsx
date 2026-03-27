@@ -332,19 +332,8 @@ export default function VideoMeet() {
     }
   };
 
-  useEffect(() => {
-    socketRef.current = io.connect(server_url, { secure: false });
-  
-    socketRef.current.on("signal", gotMessageFromServer);
-  
-    return () => {
-      if (socketRef.current) {
-        socketRef.current.disconnect();
-      }
-    };
-  }, []);
   let connectToSocketServer = () => {
-    
+    socketRef.current = io.connect(server_url, { secure: false });
     socketRef.current.on("signal", gotMessageFromServer);
     socketRef.current.on("connect", () => {
       socketRef.current.emit("join-call", window.location.pathname);
