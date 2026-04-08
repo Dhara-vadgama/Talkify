@@ -2,6 +2,7 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AuthContext } from "../context/authContext";
 import Snackbar from "@mui/material/Snackbar";
@@ -51,9 +52,18 @@ export default function Authentication() {
   const [error, setError] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const { handleRegister, handleLogin } = React.useContext(AuthContext);
 
   let handleAuth = async () => {
+    if (!username || !password || (formState === 1 && !name)) {
+      setError("Please fill all fields");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
     try {
       if (formState == 0) {
         let result = await handleLogin(username, password);
@@ -68,6 +78,8 @@ export default function Authentication() {
     } catch (e) {
       let msg = e?.response?.data?.message || e.message || "Server error";
       setError(msg);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -192,6 +204,7 @@ export default function Authentication() {
                   size="small"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  disabled={loading}
                 />
               )}
 
@@ -202,6 +215,7 @@ export default function Authentication() {
                 size="small"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
+                disabled={loading}
               />
 
               <TextField
@@ -212,6 +226,7 @@ export default function Authentication() {
                 size="small"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
               />
 
               {error && (
@@ -231,14 +246,20 @@ export default function Authentication() {
                 variant="contained"
                 fullWidth
                 onClick={handleAuth}
+                disabled={loading}
                 sx={{
                   mt: 1,
-                  background: "#4285f4",
-                  "&:hover": { background: "#3b78e7" },
+                  background: loading ? "rgba(66,133,244,0.5)" : "#4285f4",
+                  "&:hover": { background: loading ? "rgba(66,133,244,0.5)" : "#3b78e7" },
                   boxShadow: "0 4px 16px rgba(66,133,244,0.3)",
+                  display: "flex",
+                  gap: 1,
                 }}
               >
-                {formState === 0 ? "Sign In" : "Sign Up"}
+                {loading && <CircularProgress size={20} sx={{ color: "#fff" }} />}
+                {loading
+                  ? (formState === 0 ? "Signing In..." : "Signing Up...")
+                  : (formState === 0 ? "Sign In" : "Sign Up")}
               </Button>
             </Box>
           </Box>

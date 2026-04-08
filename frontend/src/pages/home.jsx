@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateMeetingCode, getMeetingShareUrl } from "../lib/meetingCode";
 import { toast } from "sonner";
+import "./home.css";
 
 export default function Home() {
   const navigate = useNavigate();
