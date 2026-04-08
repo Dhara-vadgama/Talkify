@@ -20,7 +20,8 @@ export default function Home() {
       toast.error("Please generate a meeting code first");
       return;
     }
-    navigate(`/meeting/${generatedCode}`);
+
+    navigate(`/${generatedCode}`);
   };
 
  
